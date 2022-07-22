@@ -1,0 +1,9 @@
+{
+    "font": {
+        "color": -65536,
+        "family": "Arial",
+        "position": [ 702, 525 ],
+        "size": 12
+    },
+    "format": "Sublimation: %.1f"
+}
