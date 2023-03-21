@@ -39,8 +39,12 @@ local default_config =
         family      = 'Arial',
         size        = 12,
         color       = math.d3dcolor(255, 255, 0, 0),
-        position    = { 40, 1 }
+		bgcolor     = math.d3dcolor(200, 0, 0, 0),
+        bgvisible   = true,
+		bold		= true,
+        position    = { 702, 525 }
     },
+		tic = 2,
     format = 'Sublimation: %.1f'
 };
 local Sublimation_config = default_config;
@@ -89,6 +93,8 @@ ashita.register_event('load', function()
     f:SetPositionY(Sublimation_config.font.position[2]);
     f:SetText('');
     f:SetVisibility(Sublimation.show);
+	f:GetBackground():SetColor(Sublimation_config.font.bgcolor );
+    f:GetBackground():SetVisibility(Sublimation_config.font.bgvisible );
 end);
 
 ----------------------------------------------------------------------------------------------------
@@ -204,10 +210,12 @@ ashita.register_event('render', function()
     end
 	
 	if Sublimation.ZoneoutTimer ~= nil then
-		if os.clock() >= Sublimation.ZoneoutTimer + 19 and Sublimation.mp ~= 0 then
-			Sublimation.mp = Sublimation.mp + 4
-			Sublimation.ticZone = false;
-			Sublimation.ZoneoutTimer = nil;
+		if Sublimation.tic == 1 then
+			if os.clock() >= Sublimation.ZoneoutTimer + 19 and Sublimation.mp ~= 0 then
+				Sublimation.mp = Sublimation.mp + (Sublimation_config.tic)
+				Sublimation.ticZone = false;
+				Sublimation.ZoneoutTimer = nil;
+			end
 		end
 	end
 		
@@ -215,7 +223,7 @@ ashita.register_event('render', function()
 	if (Sublimation.tic == 1) then
        if  (os.clock() >= (Sublimation.objTimerTic + Sublimation.objDelayTic)) then
           Sublimation.objTimerTic = os.clock();
-          Sublimation.mp = Sublimation.mp + 2.0;
+          Sublimation.mp = Sublimation.mp + (Sublimation_config.tic);
        end
 	end
 	

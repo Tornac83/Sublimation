@@ -5,9 +5,9 @@
         "bold": true,
         "color": -65536,
         "family": "Arial",
-        "position": [ 710, 530 ],
+        "position": [ 702, 525 ],
         "size": 12
     },
     "format": "Sublimation: %.1f",
-    "tic": 2
+    "tic": 4
 }
